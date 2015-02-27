@@ -17,6 +17,7 @@ function loadData() {
 //----------------------------------------[Game]----------------------------------------
 
 var canv, g;
+var show_grid = true;
 
 var key = {
 	state: [],
@@ -115,7 +116,9 @@ function inputProc() {
 	else if (key.isTriggered('O'.charCodeAt(0))) {
 		loadStageData();
 	}
-
+	else if (key.isTriggered('G'.charCodeAt(0))) {
+		show_grid = !show_grid;
+	}
 	tile_select_mode = key.isPressed(32);
 }
 
@@ -127,7 +130,9 @@ function draw() {
 		drawPalette();
 	else
 		drawTile();
-	drawGrid();
+
+	if (show_grid)
+		drawGrid();
 
 	g.globalAlpha = 0.75;
 	drawTileImage(cursor_tile_id, mouse.x - 20, mouse.y - 20);
