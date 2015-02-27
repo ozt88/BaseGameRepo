@@ -22,9 +22,11 @@ public:
 		MD_RIGHT,
 		MD_MAX,
 	};
+
 private:
 	void			move(float dTime);
 	void			makeDirVector();
+
 private:
 	std::array<cocos2d::Vec2, MD_MAX> m_DirVector;
 };
