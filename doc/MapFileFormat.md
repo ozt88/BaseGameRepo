@@ -5,7 +5,7 @@
         "height": 14,
         "tiles": [1, 2, 3]
     },
-    "objects": [
+    "area": [
         {
             "type": "~~~",
             "pos": [10, 10],
