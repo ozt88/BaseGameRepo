@@ -6,6 +6,7 @@ var res = {
 function loadData() {
 	var data = [
 		"tile.png"
+		,"turntable.png"
 		];
 	data.forEach(function(img_name){
 		res.img[img_name] = new Image();
@@ -18,6 +19,10 @@ function loadData() {
 
 var canv, g;
 var show_grid = true;
+
+var TILE_MODE = 0;
+var AREA_MODE = 1;
+var edit_mode = TILE_MODE;
 
 var key = {
 	state: [],
@@ -83,32 +88,19 @@ function gameLoop() {
 }
 
 function inputProc() {
-	if (mouse.isPressed(0)) {
-		var coord = getTileXY(mouse.x, mouse.y);
-		var id = getTileID(coord.x, coord.y);
-
-		if (tile_select_mode) {
-			if (id < 36)
-				cursor_tile_id = id;
-		}
-		else {
-			tiles[id] = cursor_tile_id;
-		}
-	}
-	else if (mouse.isPressed(2)) {
-		var coord = getTileXY(mouse.x, mouse.y);
-		var id = getTileID(coord.x, coord.y);
-		if (tile_select_mode) {
-			if (id < 36)
-				cursor_tile_id = id;
-		}
-		else {
-			cursor_tile_id = tiles[id];
-		}
+	switch (edit_mode)
+	{
+	case TILE_MODE:
+		editTileInputProc();
+		break;
+	case AREA_MODE:
+		editAreaInputProc();
+		break;
 	}
 
 	if (key.isTriggered('R'.charCodeAt(0))) {
 		resetTile();
+		resetArea();
 	}
 	else if (key.isTriggered('S'.charCodeAt(0))) {
 		saveStageData();
@@ -119,7 +111,13 @@ function inputProc() {
 	else if (key.isTriggered('G'.charCodeAt(0))) {
 		show_grid = !show_grid;
 	}
-	tile_select_mode = key.isPressed(32);
+
+	else if (key.isTriggered('1'.charCodeAt(0))) {
+		edit_mode = TILE_MODE;
+	}
+	else if (key.isTriggered('2'.charCodeAt(0))) {
+		edit_mode = AREA_MODE;
+	}
 }
 
 function update() {
@@ -138,9 +136,20 @@ function draw() {
 			drawGrid();
 	}
 
-	g.globalAlpha = 0.75;
-	drawTileImage(cursor_tile_id, mouse.x - 20, mouse.y - 20);
-	g.globalAlpha = 1;
+	switch (edit_mode)
+	{
+	case TILE_MODE:
+		g.globalAlpha = 0.75;
+		drawTileImage(cursor_tile_id, mouse.x - 20, mouse.y - 20);
+		g.globalAlpha = 1;
+		break;
+	case AREA_MODE:
+		g.globalAlpha = 0.75;
+		drawAreaImage(cursor_area.img, mouse.x, mouse.y, cursor_area.width, cursor_area.height);
+		g.globalAlpha = 1;
+		break;
+	}
+
 }
 
 function drawGrid() {
@@ -251,9 +260,46 @@ function getTileID(x, y) {
 	return x + y*tile_w;
 }
 
+
+function editTileInputProc() {
+	if (mouse.isPressed(0)) {
+		var coord = getTileXY(mouse.x, mouse.y);
+		var id = getTileID(coord.x, coord.y);
+
+		if (tile_select_mode) {
+			if (id < 36)
+				cursor_tile_id = id;
+		}
+		else {
+			tiles[id] = cursor_tile_id;
+		}
+	}
+	else if (mouse.isPressed(2)) {
+		var coord = getTileXY(mouse.x, mouse.y);
+		var id = getTileID(coord.x, coord.y);
+		if (tile_select_mode) {
+			if (id < 36)
+				cursor_tile_id = id;
+		}
+		else {
+			cursor_tile_id = tiles[id];
+		}
+	}
+
+	tile_select_mode = key.isPressed(32);
+}
+
 //----------------------------------------[Area]----------------------------------------
 
 var areas = [];
+
+var AREA_TURNTABLE = "turntable";
+var cursor_area = {
+	type: AREA_TURNTABLE
+	, width: 100
+	, height: 100
+	, img: AREA_TURNTABLE + ".png"
+}
 
 function resetArea() {
 	areas = [];
@@ -261,9 +307,45 @@ function resetArea() {
 
 function drawArea() {
 	areas.forEach(function(area){
-		var img = res.img[area.src];
-		g.drawImage(img, area.pos[0] - area.width/2, area.pos[1] - area.height/2);
+		drawAreaImage(area.img, area.pos[0], area.pos[1], area.width, area.height);
 	});
+}
+
+function drawAreaImage(src, x, y, w, h) {
+	var img = res.img[src];
+	g.drawImage(img, x - w/2, y - h/2, w, h);
+}
+
+function getAreaObject(x, y) {
+	for (var i = 0; i < areas.length; ++i) {
+		if (areas[i].checkRect(x, y)) {
+			return areas[i];
+		}
+	}
+	return null;
+}
+
+function editAreaInputProc() {
+	if (mouse.isTriggered(0)) {
+		var area = null;
+		switch (cursor_area.type)
+		{
+		case AREA_TURNTABLE:
+			area = AreaObject.makeTurntable(mouse.x, mouse.y, cursor_area.width, false);
+			break;
+		};
+		if (area) {
+			areas.push(area);
+		}
+	}
+	else if (mouse.isTriggered(2)) {
+		for (var i = 0; i < areas.length; ++i) {
+			if (areas[i].checkRect(mouse.x, mouse.y)) {
+				areas.splice(i, 1);
+				break;
+			}
+		}
+	}
 }
 
 function AreaObject(type, x, y, width, height, subtype, img) {
@@ -277,5 +359,10 @@ function AreaObject(type, x, y, width, height, subtype, img) {
 
 AreaObject.makeTurntable = function(x, y, radius, ccw){
 	var subtype = ccw? "ccw" : "cw";
-	return new AreaObject("turntable", x, y, radius*2, radius*2, subtype, "turntable.png");
+	return new AreaObject(AREA_TURNTABLE, x, y, radius*2, radius*2, subtype, AREA_TURNTABLE + ".png");
+};
+
+AreaObject.prototype.checkRect = function(x, y){
+	return Math.abs(this.pos[0] - x)*2 < this.width &&
+		Math.abs(this.pos[1] - y)*2 < this.height;
 };
