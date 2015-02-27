@@ -1,6 +1,6 @@
+#include "pch.h"
 #include "main.h"
 #include "AppDelegate.h"
-#include "cocos2d.h"
 
 USING_NS_CC;
 
@@ -12,7 +12,6 @@ int APIENTRY _tWinMain(HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
-    // create the application instance
     AppDelegate app;
     return Application::getInstance()->run();
 }

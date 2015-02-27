@@ -4,11 +4,44 @@
     <Filter Include="win32">
       <UniqueIdentifier>{84a8ebd7-7cf0-47f6-b75e-d441df67da40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Classes">
-      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
-    </Filter>
     <Filter Include="resource">
       <UniqueIdentifier>{715254bc-d70b-4ec5-bf29-467dd3ace079}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{58b5b968-ef46-49aa-996e-d0b6fb22fe76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="App">
+      <UniqueIdentifier>{bb6c862e-70e9-49d9-81b7-3829a6f50471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Util">
+      <UniqueIdentifier>{f2824925-b59a-4b6b-82aa-1e5e5e7ddfc5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pch">
+      <UniqueIdentifier>{7cbfed21-c6f5-4aa8-8512-0037ebc02f24}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene">
+      <UniqueIdentifier>{ad39ee00-56eb-441c-8fdf-37ba4626860c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TitleScene">
+      <UniqueIdentifier>{8edf6874-658f-4b5c-a799-b10f4601737e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\FieldLayer">
+      <UniqueIdentifier>{7d6dba99-c8e2-455f-a769-49e0006e4433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameScene\GameUILayer">
+      <UniqueIdentifier>{80610a02-504c-47c5-8e63-f34f266401cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map">
+      <UniqueIdentifier>{7346c9e6-0a29-41b6-aa77-090a6be40f82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Map\Tile">
+      <UniqueIdentifier>{f644108f-c2ff-4570-a21b-2e5ccede674a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{8f72987d-608b-4328-9b34-d68eb51890a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object\Ant">
+      <UniqueIdentifier>{ff1eab0b-b125-4a54-9438-4600c782380c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -16,10 +49,37 @@
       <Filter>win32</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
-      <Filter>Classes</Filter>
+      <Filter>App</Filter>
     </ClCompile>
-    <ClCompile Include="..\Classes\HelloWorldScene.cpp">
-      <Filter>Classes</Filter>
+    <ClCompile Include="..\Classes\SceneManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Pch.cpp">
+      <Filter>Pch</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameScene.cpp">
+      <Filter>GameScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\TitleScene.cpp">
+      <Filter>TitleScene</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\FieldLayer.cpp">
+      <Filter>GameScene\FieldLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameUILayer.cpp">
+      <Filter>GameScene\GameUILayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\GameMap.cpp">
+      <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MapTile.cpp">
+      <Filter>Map\Tile</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\DataManager.cpp">
+      <Filter>Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\MapModel.cpp">
+      <Filter>Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -27,10 +87,49 @@
       <Filter>win32</Filter>
     </ClInclude>
     <ClInclude Include="..\Classes\AppDelegate.h">
-      <Filter>Classes</Filter>
+      <Filter>App</Filter>
     </ClInclude>
-    <ClInclude Include="..\Classes\HelloWorldScene.h">
-      <Filter>Classes</Filter>
+    <ClInclude Include="..\Classes\Utils.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Macro.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Define.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Pch.h">
+      <Filter>Pch</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Type.h">
+      <Filter>Util</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\SceneManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameScene.h">
+      <Filter>GameScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\TitleScene.h">
+      <Filter>TitleScene</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\FieldLayer.h">
+      <Filter>GameScene\FieldLayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameUILayer.h">
+      <Filter>GameScene\GameUILayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\GameMap.h">
+      <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MapTile.h">
+      <Filter>Map\Tile</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\DataManager.h">
+      <Filter>Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\MapModel.h">
+      <Filter>Map</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
