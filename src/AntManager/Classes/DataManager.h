@@ -1,7 +1,9 @@
 #pragma once
 #include "json.h"
+
 #define GET_DATA_MANAGER DataManager::getInstance
 
+class MapModel;
 class DataManager : public cocos2d::Object
 {
 public:
@@ -9,6 +11,7 @@ public:
 	void				releaseInstance();
 	std::string			readFromFile(const std::string& filePath);
 	Json::Value			toJsonFromString(const std::string& string);
+	MapModel*			getMapModel();
 
 private:
 	DataManager();
@@ -16,5 +19,6 @@ private:
 
 private:
 	static DataManager*	m_Instance;
+	MapModel*			m_MapModel;
 };
 

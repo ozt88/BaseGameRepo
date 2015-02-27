@@ -13,6 +13,5 @@ public:
 private:
 	void		makeTiles();
 private:
-	MapModel*				m_MapModel;
 	std::vector<MapTile*>	m_Tiles;
 };

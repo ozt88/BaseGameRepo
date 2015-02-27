@@ -31,6 +31,9 @@ void Ant::update(float dTime)
 void Ant::move(float dTime)
 {
 	int moveDirection = rand() % MD_MAX;
+	Vec2 moveVec = m_DirVector[moveDirection] * dTime;
+	Point nextPos = getPosition() + moveVec;
+
 }
 
 void Ant::makeDirVector()

@@ -1,10 +1,13 @@
 #include "Pch.h"
 #include "DataManager.h"
+#include "MapModel.h"
 #include "Macro.h"
+#include "Define.h"
 
 DataManager* DataManager::m_Instance = nullptr;
 
 DataManager::DataManager()
+	:m_MapModel(nullptr)
 {
 }
 
@@ -50,5 +53,15 @@ Json::Value DataManager::toJsonFromString(const std::string& string)
 	Json::Reader reader;
 	bool isSuccess = reader.parse(string, root);
 	return root;
+}
+
+MapModel* DataManager::getMapModel()
+{
+	if(m_MapModel == nullptr)
+	{
+		m_MapModel = new MapModel();
+		m_MapModel->initFromFile(MAP_DATA_01);
+	}
+	return m_MapModel;
 }
 
