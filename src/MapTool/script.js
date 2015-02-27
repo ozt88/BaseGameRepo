@@ -85,12 +85,25 @@ function inputProc() {
 	if (mouse.isPressed(0)) {
 		var coord = getTileXY(mouse.x, mouse.y);
 		var id = getTileID(coord.x, coord.y);
-		tiles[id] = cursor_tile_id;
+
+		if (tile_select_mode) {
+			if (id < 36)
+				cursor_tile_id = id;
+		}
+		else {
+			tiles[id] = cursor_tile_id;
+		}
 	}
 	else if (mouse.isPressed(2)) {
 		var coord = getTileXY(mouse.x, mouse.y);
 		var id = getTileID(coord.x, coord.y);
-		tiles[id] = 0;
+		if (tile_select_mode) {
+			if (id < 36)
+				cursor_tile_id = id;
+		}
+		else {
+			cursor_tile_id = tiles[id];
+		}
 	}
 
 	if (key.isTriggered('R'.charCodeAt(0))) {
@@ -102,13 +115,18 @@ function inputProc() {
 	else if (key.isTriggered('O'.charCodeAt(0))) {
 		loadStageData();
 	}
+
+	tile_select_mode = key.isPressed(32);
 }
 
 function update() {
 }
 
 function draw() {
-	drawTile();
+	if (tile_select_mode)
+		drawPalette();
+	else
+		drawTile();
 	drawGrid();
 
 	g.globalAlpha = 0.75;
@@ -163,6 +181,8 @@ var tile_num = tile_w * tile_h;
 
 var cursor_tile_id = 1;
 
+var tile_select_mode = false;
+
 function resetTile() {
 	tiles = [];
 	for (var i = 0; i < tile_num; ++i)
@@ -184,9 +204,17 @@ function drawTile() {
 	}
 }
 
+function drawPalette() {
+	for (var i = 0; i < 36; ++i) {
+		var x = i % tile_w;
+		var y = Math.floor(i / tile_w);
+		drawTileImage(i, x*40, y*40);
+	}
+}
+
 function drawTileImage(id, x, y) {
-	var sx = id % tile_w;
-	var sy = Math.floor(id / tile_w);
+	var sx = id % 6;
+	var sy = Math.floor(id / 6);
 	g.drawImage(res.img["tile.png"], sx*40, sy*40, 40, 40, x, y, 40, 40);
 }
 
@@ -197,6 +225,10 @@ function getTileXY(mouse_x, mouse_y) {
 }
 
 function getTileID(x, y) {
+	if (x >= tile_w)
+		x = tile_w - 1;
+	if (y >= tile_h)
+		y = tile_h - 1;
 	return x + y*tile_w;
 }
 
