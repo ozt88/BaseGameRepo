@@ -93,6 +93,9 @@
     <ClCompile Include="..\Classes\Unit.cpp">
       <Filter>Object</Filter>
     </ClCompile>
+    <ClCompile Include="..\Classes\Ant.cpp">
+      <Filter>Object\Ant</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="main.h">
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\Unit.h">
       <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Ant.h">
+      <Filter>Object\Ant</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -28,6 +28,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     director->setAnimationInterval(1.0 / 60);
     director->runWithScene(scene);
 
+	srand((unsigned)time(NULL));
+	
     return true;
 }
 
