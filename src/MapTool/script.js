@@ -99,6 +99,9 @@ function inputProc() {
 	else if (key.isTriggered('S'.charCodeAt(0))) {
 		saveStageData();
 	}
+	else if (key.isTriggered('L'.charCodeAt(0))) {
+		loadStageData();
+	}
 }
 
 function update() {
@@ -129,8 +132,11 @@ function drawGrid() {
 
 //----------------------------------------[Stage]----------------------------------------
 
-function loadStageData(data) {
-	tiles = data.tile.tiles;
+function loadStageData() {
+	var data = prompt("JSON을 복붙하시오.");
+	if (!data) return;
+	var o = JSON.parse(data);
+	tiles = o.tile.tiles;
 }
 
 function saveStageData() {
@@ -141,7 +147,7 @@ function saveStageData() {
 			tiles: tiles
 		}
 	};
-	prompt("복사하시오", JSON.stringify(o));
+	prompt("복사하시오.", JSON.stringify(o));
 }
 
 //----------------------------------------[Tile]----------------------------------------
