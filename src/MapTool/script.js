@@ -126,13 +126,17 @@ function update() {
 }
 
 function draw() {
-	if (tile_select_mode)
+	if (tile_select_mode) {
 		drawPalette();
-	else
+		drawGrid();
+	}
+	else {
+		drawArea();
 		drawTile();
 
-	if (show_grid)
-		drawGrid();
+		if (show_grid)
+			drawGrid();
+	}
 
 	g.globalAlpha = 0.75;
 	drawTileImage(cursor_tile_id, mouse.x - 20, mouse.y - 20);
@@ -172,7 +176,8 @@ function saveStageData() {
 			width: tile_w,
 			height: tile_h,
 			tiles: tiles
-		}
+		},
+		area: areas
 	};
 	prompt("복사하시오.", JSON.stringify(o));
 }
@@ -246,3 +251,31 @@ function getTileID(x, y) {
 	return x + y*tile_w;
 }
 
+//----------------------------------------[Area]----------------------------------------
+
+var areas = [];
+
+function resetArea() {
+	areas = [];
+}
+
+function drawArea() {
+	areas.forEach(function(area){
+		var img = res.img[area.src];
+		g.drawImage(img, area.pos[0] - area.width/2, area.pos[1] - area.height/2);
+	});
+}
+
+function AreaObject(type, x, y, width, height, subtype, img) {
+	this.type = type;
+	this.pos = [x, y];
+	this.width = width;
+	this.height = height;
+	this.subtype = subtype;
+	this.img = img;
+}
+
+AreaObject.makeTurntable = function(x, y, radius, ccw){
+	var subtype = ccw? "ccw" : "cw";
+	return new AreaObject("turntable", x, y, radius*2, radius*2, subtype, "turntable.png");
+};
