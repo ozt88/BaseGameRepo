@@ -2,6 +2,8 @@
 #include "DataManager.h"
 #include "Macro.h"
 
+DataManager* DataManager::m_Instance = nullptr;
+
 DataManager::DataManager()
 {
 }
@@ -27,6 +29,12 @@ void DataManager::releaseInstance()
 
 std::string DataManager::readFromFile(const std::string& filePath)
 {
-	
+	std::string data;
+	FILE* file = fopen(filePath.c_str(), "rb");
+	if(file == NULL)
+		return data;
+
+
+	return data;
 }
 
