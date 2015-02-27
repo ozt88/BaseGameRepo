@@ -1,13 +1,12 @@
 게임의 이름
 ====
-간단한 게임의 설명 ( 민수를 키워서 세계를 정복하는 게임입니다. )<br>
-본 양식을 필요에 따라 자유롭게 수정하시면 됩니다.
+간단한 게임의 설명<br>
 
 스크린샷
 ----
-![screenshot](http://img.naver.net/static/www/u/2013/0731/nmms_224940510.gif)
+![screenshot](http://i2.wp.com/cdn.bgr.com/2015/01/ant-man-trailer.png?w=625)
 
-팀 - [팀명]
+팀 - Sympathy
 ----
-* [리니리노](깃허브 주소1)
-* [뷁뒑쉙뛝](깃허브 주소2)
+* [김연우](https://github.com/ozt88)
+* [박민수](https://github.com/Rinirihiriro)
