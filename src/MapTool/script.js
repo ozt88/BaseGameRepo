@@ -195,6 +195,15 @@ function resetTile() {
 }
 
 function drawTile() {
+	
+	g.globalAlpha = 0.5;
+	for (var i = 0; i < tile_num; ++i) {
+		var x = i % tile_w;
+		var y = Math.floor(i / tile_w);
+		drawTileImage(tiles[i], x*40 + 5, y*40 + 5);
+	}
+	g.globalAlpha = 1;
+	
 	for (var i = 0; i < tile_num; ++i) {
 		var x = i % tile_w;
 		var y = Math.floor(i / tile_w);
