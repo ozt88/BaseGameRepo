@@ -12,6 +12,5 @@ public:
 	CREATE_FUNC(GameUILayer);
 
 private:
-
 private:
 };

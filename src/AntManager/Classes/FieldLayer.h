@@ -1,7 +1,7 @@
 #pragma once
 
 //실제 게임이 벌어지는 Field의 Layer
-
+class GameMap;
 class FieldLayer : public cocos2d::Layer
 {
 public:
@@ -11,5 +11,7 @@ public:
 
 	CREATE_FUNC(FieldLayer);
 private:
+
 private:
+	GameMap*		m_GameMap;
 };

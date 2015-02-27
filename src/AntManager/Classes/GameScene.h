@@ -20,6 +20,7 @@ public:
 	};
 
 private:
+	void		makeBackground();
 
 private:
 	cocos2d::Layer*			m_FieldLayer;

@@ -31,11 +31,24 @@ std::string DataManager::readFromFile(const std::string& filePath)
 {
 	std::string data;
 	FILE* file = fopen(filePath.c_str(), "rb");
+	char ch;
 	if(file != NULL)
 	{
-		
+		while(EOF != (ch = fgetc(file)))
+		{
+			data += ch;
+		}
 	}
 
+	fclose(file);
 	return data;
+}
+
+Json::Value DataManager::toJsonFromString(const std::string& string)
+{
+	Json::Value root;
+	Json::Reader reader;
+	bool isSuccess = reader.parse(string, root);
+	return root;
 }
 

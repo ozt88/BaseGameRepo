@@ -2,6 +2,7 @@
 #include "GameScene.h"
 #include "FieldLayer.h"
 #include "GameUILayer.h"
+#include "Define.h"
 
 USING_NS_CC;
 
@@ -28,12 +29,24 @@ bool GameScene::init()
 	{
 		return false;
 	}
+	Point fieldPosition(FIELD_RECT.origin);
 	m_FieldLayer = FieldLayer::create();
 	m_UILayer = GameUILayer::create();
+	m_FieldLayer->setPosition(fieldPosition);
+
+	makeBackground();
 	addChild(m_FieldLayer, LZO_FIELD);
 	addChild(m_UILayer, LZO_UI);
 
 	return true;
+}
+
+void GameScene::makeBackground()
+{
+	auto winSize = Director::getInstance()->getWinSize();
+	auto bgSprite = Sprite::create("Background.png");
+	bgSprite->setPosition(Point(winSize.width / 2, winSize.height / 2));
+	addChild(bgSprite, -1);
 }
 
 

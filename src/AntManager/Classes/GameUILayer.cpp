@@ -17,6 +17,5 @@ bool GameUILayer::init()
 	{
 		return false;
 	}
-
 	return true;
 }

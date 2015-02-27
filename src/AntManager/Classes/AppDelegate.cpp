@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "AppDelegate.h"
 #include "TitleScene.h"
+#include "Define.h"
 
 USING_NS_CC;
 
@@ -18,7 +19,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto glview = director->getOpenGLView();
 
     if(!glview) {
-		glview = GLView::createWithRect("My Game", Rect(0, 0, 480, 800));
+		glview = GLView::createWithRect("My Game", Rect(0, 0, RESOLUTION_WIDTH, RESOLUTION_HEIGHT));
         director->setOpenGLView(glview);
     }
 

@@ -43,6 +43,9 @@
     <Filter Include="Object\Ant">
       <UniqueIdentifier>{ff1eab0b-b125-4a54-9438-4600c782380c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Json">
+      <UniqueIdentifier>{f9015058-a486-4917-ac6b-6cf6897ac6b5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -80,6 +83,12 @@
     </ClCompile>
     <ClCompile Include="..\Classes\MapModel.cpp">
       <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\jsoncpp.cpp">
+      <Filter>Json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\ResourceManager.cpp">
+      <Filter>Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +139,15 @@
     </ClInclude>
     <ClInclude Include="..\Classes\MapModel.h">
       <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json.h">
+      <Filter>Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\json-forwards.h">
+      <Filter>Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\ResourceManager.h">
+      <Filter>Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
