@@ -85,7 +85,7 @@ function inputProc() {
 	if (mouse.isPressed(0)) {
 		var coord = getTileXY(mouse.x, mouse.y);
 		var id = getTileID(coord.x, coord.y);
-		tiles[id] = 1;
+		tiles[id] = cursor_tile_id;
 	}
 	else if (mouse.isPressed(2)) {
 		var coord = getTileXY(mouse.x, mouse.y);
@@ -99,7 +99,7 @@ function inputProc() {
 	else if (key.isTriggered('S'.charCodeAt(0))) {
 		saveStageData();
 	}
-	else if (key.isTriggered('L'.charCodeAt(0))) {
+	else if (key.isTriggered('O'.charCodeAt(0))) {
 		loadStageData();
 	}
 }
@@ -110,6 +110,10 @@ function update() {
 function draw() {
 	drawTile();
 	drawGrid();
+
+	g.globalAlpha = 0.75;
+	drawTileImage(cursor_tile_id, mouse.x - 20, mouse.y - 20);
+	g.globalAlpha = 1;
 }
 
 function drawGrid() {
@@ -157,6 +161,8 @@ var tile_w = 480/40;
 var tile_h = 640/40;
 var tile_num = tile_w * tile_h;
 
+var cursor_tile_id = 1;
+
 function resetTile() {
 	tiles = [];
 	for (var i = 0; i < tile_num; ++i)
@@ -164,20 +170,24 @@ function resetTile() {
 }
 
 function drawTile() {
-	var img = res.img["tile.png"];
 	for (var i = 0; i < tile_num; ++i) {
 		var x = i % tile_w;
 		var y = Math.floor(i / tile_w);
-		var sx = tiles[i] % tile_w;
-		var sy = Math.floor(tiles[i] / tile_w);
-		g.drawImage(img, sx*40, sy*40, 40, 40, x*40, y*40, 40, 40);
-
+		drawTileImage(tiles[i], x*40, y*40);
+/*
 		g.fillStyle = "grey";
 		g.font = "12px Arial";
 		g.textBaseline = "top";
 		g.fillText(tiles[i], 2 + x*40, y*40);
 		g.textBaseline = "alphabetic";
+*/
 	}
+}
+
+function drawTileImage(id, x, y) {
+	var sx = id % tile_w;
+	var sy = Math.floor(id / tile_w);
+	g.drawImage(res.img["tile.png"], sx*40, sy*40, 40, 40, x, y, 40, 40);
 }
 
 function getTileXY(mouse_x, mouse_y) {
