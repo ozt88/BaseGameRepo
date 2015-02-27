@@ -96,6 +96,9 @@ function inputProc() {
 	if (key.isTriggered('R'.charCodeAt(0))) {
 		resetTile();
 	}
+	else if (key.isTriggered('S'.charCodeAt(0))) {
+		saveStageData();
+	}
 }
 
 function update() {
@@ -126,7 +129,19 @@ function drawGrid() {
 
 //----------------------------------------[Stage]----------------------------------------
 
-function loadGameData(data) {
+function loadStageData(data) {
+	tiles = data.tile.tiles;
+}
+
+function saveStageData() {
+	var o = {
+		tile: {
+			width: tile_w,
+			height: tile_h,
+			tiles: tiles
+		}
+	};
+	prompt("복사하시오", JSON.stringify(o));
 }
 
 //----------------------------------------[Tile]----------------------------------------
