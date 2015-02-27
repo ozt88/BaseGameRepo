@@ -346,6 +346,21 @@ function editAreaInputProc() {
 			}
 		}
 	}
+
+	if (key.isTriggered(219)) {			// [
+		if (cursor_area.width > 10 || cursor_area.height > 10) {
+			cursor_area.width -= 10;
+			cursor_area.height -= 10;
+		}
+		else {
+			cursor_area.width = 10;
+			cursor_area.height = 10;
+		}
+	}
+	else if (key.isTriggered(221)) {	// ]
+		cursor_area.width += 10;
+		cursor_area.height += 10;
+	}
 }
 
 function AreaObject(type, x, y, width, height, subtype, img) {
