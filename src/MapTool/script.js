@@ -177,6 +177,7 @@ function loadStageData() {
 	if (!data) return;
 	var o = JSON.parse(data);
 	tiles = o.tile.tiles;
+	areas = o.area;
 }
 
 function saveStageData() {
