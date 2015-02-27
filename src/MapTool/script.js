@@ -331,7 +331,7 @@ function editAreaInputProc() {
 		switch (cursor_area.type)
 		{
 		case AREA_TURNTABLE:
-			area = AreaObject.makeTurntable(mouse.x, mouse.y, cursor_area.width, false);
+			area = AreaObject.makeTurntable(mouse.x, mouse.y, cursor_area.width/2, false);
 			break;
 		};
 		if (area) {
