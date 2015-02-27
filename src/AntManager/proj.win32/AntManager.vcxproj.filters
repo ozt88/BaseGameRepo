@@ -16,9 +16,6 @@
     <Filter Include="Util">
       <UniqueIdentifier>{f2824925-b59a-4b6b-82aa-1e5e5e7ddfc5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Pch">
-      <UniqueIdentifier>{7cbfed21-c6f5-4aa8-8512-0037ebc02f24}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameScene">
       <UniqueIdentifier>{ad39ee00-56eb-441c-8fdf-37ba4626860c}</UniqueIdentifier>
     </Filter>
@@ -42,6 +39,9 @@
     </Filter>
     <Filter Include="Object\Ant">
       <UniqueIdentifier>{ff1eab0b-b125-4a54-9438-4600c782380c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Pch">
+      <UniqueIdentifier>{7cbfed21-c6f5-4aa8-8512-0037ebc02f24}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -80,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="..\Classes\MapModel.cpp">
       <Filter>Map</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\Unit.cpp">
+      <Filter>Object</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="..\Classes\MapModel.h">
       <Filter>Map</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\Unit.h">
+      <Filter>Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
