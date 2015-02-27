@@ -31,9 +31,10 @@ std::string DataManager::readFromFile(const std::string& filePath)
 {
 	std::string data;
 	FILE* file = fopen(filePath.c_str(), "rb");
-	if(file == NULL)
-		return data;
-
+	if(file != NULL)
+	{
+		
+	}
 
 	return data;
 }
